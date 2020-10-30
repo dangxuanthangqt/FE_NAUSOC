@@ -18,7 +18,7 @@ function Routes(props) {
       <Route exact path="/">
         {checkTokenExpration() && checkRole() === "admin" ? (
           <Redirect to="/management/daily-reports-admin" />
-        ) : checkTokenExpration() && checkRole() === "user" ? (
+        ) : checkTokenExpration() && checkRole() !== "admin" ? (
           <Redirect to="/management/daily-reports" />
         ) : (
           <Redirect to="/auth/login" />
