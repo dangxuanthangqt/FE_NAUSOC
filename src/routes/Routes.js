@@ -4,6 +4,8 @@ import PublicRoutes from "./PublicRoutes";
 import { publicRoutes, privateRoutes, privateRouteAdmin } from "./routeConfig";
 import { PrivateRoutes, PrivateRouteAdmin } from "./PrivateRoutes";
 import Error404 from "../containers/Error404/Error404";
+import { checkTokenExpration } from "../Helpers/checkRoleExpration";
+import { checkRole } from "../Helpers/checkRole";
 
 Routes.propTypes = {};
 
@@ -13,7 +15,15 @@ function Routes(props) {
   }, []);
   return (
     <Switch>
-      <Redirect exact from="/" to="/management/daily-reports-admin"></Redirect>
+      <Route exact path="/">
+        {checkTokenExpration() && checkRole() === "admin" ? (
+          <Redirect to="/management/daily-reports-admin" />
+        ) : checkTokenExpration() && checkRole() === "user" ? (
+          <Redirect to="/management/daily-reports" />
+        ) : (
+          <Redirect to="/auth/login" />
+        )}
+      </Route>
       {publicRoutes.map((element, index) => {
         let arrayRoute = element.subroutes.map((e, i) => e.path);
         return (
