@@ -1,5 +1,9 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import axiosService from "../../services/axios/axiosService";
+
+import  startOfDay  from 'date-fns/startOfDay'
+import  endOfDay  from 'date-fns/endOfDay'
+import { parseISO } from "date-fns";
 import {
   hideLoading,
   showLoading,
@@ -44,7 +48,9 @@ function* watchGetDailyReportByDate({ payload }) {
     console.log(payload)
   yield put(showLoading());
   try {
-    const res = yield call(axiosService.get, "/daily-reports/admin/" + payload);
+    console.log(parseISO( startOfDay(payload.startDate)),endOfDay(payload.endDate))
+    const url = `/daily-reports/admin/date`
+    const res = yield call(axiosService.post,url,{startDate:startOfDay(payload.startDate),endDate:endOfDay(payload.endDate)});
     yield put(Get_daily_report_admin_by_date_success(res.data.data));
     yield put(hideLoading())
   } catch (error) {

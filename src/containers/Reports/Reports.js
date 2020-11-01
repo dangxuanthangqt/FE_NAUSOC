@@ -11,6 +11,7 @@ import { Get_daily_report_by_date_request, Get_daily_report_request } from "../.
 export default function Reports() {
   const [open, setOpen] = useState(false);
   const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectEndDate,setSelectEndDate] = useState(new Date());
   const handleOpen = () => {
     setOpen(true);
   };
@@ -23,7 +24,12 @@ export default function Reports() {
 
   }, [dispatch]);
   const handleFindByDate=()=>{
-    dispatch(Get_daily_report_by_date_request(selectedDate));
+   // dispatch(Get_daily_report_by_date_request(selectedDate));
+   const value={
+     startDate : selectedDate,
+     endDate: selectEndDate
+   }
+   dispatch(Get_daily_report_by_date_request(value));
   }
   const handleGetAllDailyReport=()=>{
     dispatch(Get_daily_report_request());
@@ -53,11 +59,23 @@ export default function Reports() {
           size="small"
           variant="inline"
           inputVariant="outlined"
-          label="Search report by date"
+          label="Select start date"
           format="dd/MM/yyyy"
           value={selectedDate}
           InputAdornmentProps={{ position: "start" }}
           onChange={(date) => handleDateChange(date)}
+        />
+        <KeyboardDatePicker
+          style={{ marginRight: "20px" }}
+          autoOk
+          size="small"
+          variant="inline"
+          inputVariant="outlined"
+          label="Select end date"
+          format="dd/MM/yyyy"
+          value={selectEndDate}
+          InputAdornmentProps={{ position: "start" }}
+          onChange={(date) => setSelectEndDate(date)}
         />
         <Button onClick={handleFindByDate} variant="contained" color="primary">
           <SearchIcon></SearchIcon>

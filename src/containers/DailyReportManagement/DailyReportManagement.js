@@ -5,21 +5,30 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 import SearchIcon from "@material-ui/icons/Search";
 import { useDispatch } from "react-redux";
 import ReportTableManagement from "./ReportTableManagement";
-import { Get_daily_report_admin_by_date_request, Get_daily_report_by_admin_request } from "../../redux/actionCreators/ReportActionCreator";
+import {
+  Get_daily_report_admin_by_date_request,
+  Get_daily_report_by_admin_request,
+} from "../../redux/actionCreators/ReportActionCreator";
 DailyReportManagement.propTypes = {};
 
 function DailyReportManagement(props) {
-   
-    const [selectedDate, handleDateChange] = useState(new Date());
-   
-    const dispatch = useDispatch();
-    const handleFindByDate=()=>{
-        dispatch(Get_daily_report_admin_by_date_request(selectedDate))
-        console.log("Aaaaaaaaaaaa")
-    }
-    const handleGetAllDailyReport=()=>{
-        dispatch(Get_daily_report_by_admin_request())
-    }
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+
+  const dispatch = useDispatch();
+  const handleFindByDate = () => {
+    
+    // console.log("Aaaaaaaaaaaa")
+    const value = {
+      startDate: selectedDate,
+      endDate: selectedEndDate,
+    };
+     dispatch(Get_daily_report_admin_by_date_request(value))
+    
+  };
+  const handleGetAllDailyReport = () => {
+    dispatch(Get_daily_report_by_admin_request());
+  };
   return (
     <Container>
       <Grid alignItems="flex-end" container justify="space-between" spacing={3}>
@@ -39,11 +48,23 @@ function DailyReportManagement(props) {
           size="small"
           variant="inline"
           inputVariant="outlined"
-          label="Search report by date"
+          label="Select start date"
           format="dd/MM/yyyy"
           value={selectedDate}
           InputAdornmentProps={{ position: "start" }}
           onChange={(date) => handleDateChange(date)}
+        />
+        <KeyboardDatePicker
+          style={{ marginRight: "20px" }}
+          autoOk
+          size="small"
+          variant="inline"
+          inputVariant="outlined"
+          label="Select start date"
+          format="dd/MM/yyyy"
+          value={selectedEndDate}
+          InputAdornmentProps={{ position: "start" }}
+          onChange={(date) => setSelectedEndDate(date)}
         />
         <Button onClick={handleFindByDate} variant="contained" color="primary">
           <SearchIcon></SearchIcon>

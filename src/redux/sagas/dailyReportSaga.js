@@ -1,6 +1,8 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { toastifyError, toastifySuccess } from "../../Helpers/toatify";
 import axiosService from "../../services/axios/axiosService";
+import  startOfDay  from 'date-fns/startOfDay'
+import  endOfDay  from 'date-fns/endOfDay'
 import {
   hideLoading,
   showLoading,
@@ -26,6 +28,7 @@ function* watchCreateDailyReport({ payload }) {
   let listMistakes = payload.mistakes.map((e) => {
     return e._id;
   });
+  console.log(payload)
   try {
     const res = yield call(axiosService.post, "/daily-reports", {
       ...payload,
@@ -52,7 +55,7 @@ function* watchGetDailyReport({ payload }) {
 function* watchGetDailyReport_byDate({ payload }) {
   yield put(showLoading());
   try {
-    const res = yield call(axiosService.get, `/daily-reports/${payload}`);
+    const res = yield call(axiosService.post, `/daily-reports/date`,{startDate:startOfDay(payload.startDate),endDate:endOfDay(payload.endDate)});
     yield put(Get_daily_report_success(res.data.data));
     yield put(hideLoading());
     yield call(toastifySuccess, res.data.message);

@@ -48,7 +48,7 @@ function* watchLogin({ payload }) {
     const dataInToken = JwtDecode(res.data.accessToken);
     yield call(setAccessToken, res.data.accessToken);
     yield put(login_success(dataInToken));
-    yield call(toastifySuccess, "Login successfully!");
+    //yield call(toastifySuccess, "Login successfully!");
     if(checkRole()==="admin"){
       yield call(history.push,"/management/daily-reports-admin")
     }else{
