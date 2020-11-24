@@ -46,7 +46,7 @@ function* watchGetDailyReport({ payload }) {
     const res = yield call(axiosService.get, "/daily-reports");
     yield put(Get_daily_report_success(res.data.data));
     yield put(hideLoading());
-    yield call(toastifySuccess, res.data.message);
+    
   } catch (e) {
     yield put(hideLoading());
     yield call(toastifyError, e.data.message);

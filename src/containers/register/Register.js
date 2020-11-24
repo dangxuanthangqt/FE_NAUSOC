@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   select: {
     marginTop: "10px",
   },
+
 }));
 
 export default function Register() {
@@ -225,16 +226,18 @@ export default function Register() {
 
                   <Grid item xs={12}>
                     <FormControl
-                      variant="outlined"
+                  
                       fullWidth
-                      size="small"
+                      
                       error={
                         props.errors.role_id && props.touched.role_id
                           ? true
                           : false
                       }
+                      className={classes.formControl}
                     >
-                      <InputLabel>Roles</InputLabel>
+                      <InputLabel>Groups</InputLabel>
+                     
                       <Select
                         labelId="demo-simple-select-outlined-label"
                         value={props.values.role_id}
