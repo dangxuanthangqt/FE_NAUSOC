@@ -1,8 +1,11 @@
 import MaterialTable from "material-table";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Delete_daily_report_request, Get_daily_report_request } from "../../redux/actionCreators/ReportActionCreator";
+import {
+  Delete_daily_report_request,
+  Get_daily_report_request,
+} from "../../redux/actionCreators/ReportActionCreator";
 
 export default function ReportTable() {
   const dispatch = useDispatch();
@@ -14,12 +17,12 @@ export default function ReportTable() {
   );
   const handleData = () => {
     let temp1 = listDailyReports.map((e) => {
-      let temp2 = e.mistakes.map((e) => {
-        return e.name;
+      let temp2 = e.mistakes.map((e1) => {
+        return e1.name;
       });
       return {
         ...e,
-        date: format(new Date(e.date),"dd/MM/yyyy HH:mm:ss"),
+        date: format(new Date(e.date), "dd/MM/yyyy HH:mm:ss"),
         user: e.user_id.email,
         mistakes: temp2.join(",  "),
       };
@@ -34,14 +37,18 @@ export default function ReportTable() {
         { title: "User", field: "user" },
         { title: "Date", field: "date" },
         { title: "Title", field: "title" },
-        { title: "Description", field: "description",cellStyle: {
+        {
+          title: "Description",
+          field: "description",
+          cellStyle: {
             width: "300px",
-            
           },
           headerStyle: {
-            width:40,
-            
-          } },
+            width: 40,
+          },
+        },
+        { title: "Standard Products", field: "standard_product" },
+        { title: "Defective Products", field: "defective_product" },
         { title: "Mistake", field: "mistakes" },
       ]}
       data={handleData()}
@@ -51,7 +58,7 @@ export default function ReportTable() {
           tooltip: "Delete report",
           onClick: (event, rowData) => {
             if (window.confirm("Do you want to delete this report ?")) {
-              dispatch(Delete_daily_report_request(rowData._id))
+              dispatch(Delete_daily_report_request(rowData._id));
             }
           },
         }),
@@ -61,7 +68,7 @@ export default function ReportTable() {
         exportButton: true,
         exportPdf: () =>
           alert(
-            "This feature is disabled. Data can only be exported as a CSV."
+            "This feature is disabled. Data can only be exported as a CSV!"
           ),
       }}
     />

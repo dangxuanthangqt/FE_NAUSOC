@@ -12,8 +12,8 @@ class axiosService {
     const instance = axios.create();
     instance.defaults.headers.post["Content-Type"] =
       "application/x-www-form-urlencoded";
-       instance.defaults.baseURL = "https://nausocbe.herokuapp.com";
-  //  instance.defaults.baseURL = "http://localhost:4000";
+    instance.defaults.baseURL = "https://nausocbe.herokuapp.com";
+    // instance.defaults.baseURL = "http://localhost:4000";
     instance.interceptors.response.use(this.handlesuccess, this.handleError);
     instance.interceptors.request.use(
       (config) => {

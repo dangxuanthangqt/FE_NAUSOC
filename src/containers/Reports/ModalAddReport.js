@@ -62,11 +62,12 @@ function ModalAddReport(props) {
                 title: "",
                 description: "",
                 mistakes: [],
+                defective_product: 0,
+                standard_product: 0,
               }}
               validationSchema={Yup.object().shape({
                 title: Yup.string().required("Title is required !"),
                 description: Yup.string().required("Content is required !"),
-                mistakes: Yup.array().required("Mistake is required !"),
               })}
               onSubmit={(values) => {
                 dispatch(Create_daily_report_request(values));
@@ -142,6 +143,44 @@ function ModalAddReport(props) {
                         />
                       </Grid>
                       <Grid item xs={12}>
+                        <TextField
+                          type="number"
+                          InputProps={{
+                            inputProps: {
+                              min: 0,
+                            },
+                          }}
+                          size="small"
+                          name="standard_product"
+                          variant="outlined"
+                          required
+                          fullWidth
+                          label="Standard products"
+                          value={props.values.standard_product}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          InputProps={{
+                            inputProps: {
+                              min: 0,
+                            },
+                          }}
+                          type="number"
+                          size="small"
+                          name="defective_product"
+                          variant="outlined"
+                          required
+                          fullWidth
+                          label="Defective products"
+                          value={props.values.defective_product}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
                         <MultiSelect
                           onBlur={props.handleBlur}
                           error={
@@ -157,7 +196,7 @@ function ModalAddReport(props) {
                           handleChange={props.setFieldValue}
                         ></MultiSelect>
                         {props.errors.mistakes && props.touched.mistakes ? (
-                          <FormHelperText style={{color:"red"}}>
+                          <FormHelperText style={{ color: "red" }}>
                             {props.errors.mistakes}
                           </FormHelperText>
                         ) : (
@@ -167,6 +206,7 @@ function ModalAddReport(props) {
 
                       <Grid item xs={6}>
                         <Button
+                          disabled={!props.dirty}
                           fullWidth
                           variant="contained"
                           color="primary"
