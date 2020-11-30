@@ -42,7 +42,7 @@ function* watchGetProfileRequest({ payload }) {
     yield put(hideLoading());
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchUpdateProfile({ payload }) {
@@ -54,7 +54,7 @@ function* watchUpdateProfile({ payload }) {
     yield call(toastifySuccess, "Update successully !");
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchGetAllUser() {
@@ -65,7 +65,7 @@ function* watchGetAllUser() {
     yield put(hideLoading());
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchChangeStatus({ payload }) {
@@ -88,7 +88,7 @@ function* watchResetPassword({ payload }) {
     yield put(hideLoading());
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchUpdateUserFollowId({ payload }) {
@@ -100,7 +100,7 @@ function* watchUpdateUserFollowId({ payload }) {
     yield put(hideLoading());
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchDeleteUserFollowId({ payload }) {
@@ -112,6 +112,6 @@ function* watchDeleteUserFollowId({ payload }) {
     yield put(hideLoading());
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }

@@ -23,7 +23,7 @@ export default function ReportTable() {
       return {
         ...e,
         date: format(new Date(e.date), "dd/MM/yyyy HH:mm:ss"),
-        user: e.user_id.email,
+        user: e.user_id.email ? e.user_id.email : "",
         mistakes: temp2.join(",  "),
       };
     });

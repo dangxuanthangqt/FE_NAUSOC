@@ -1,14 +1,12 @@
 import { combineReducers } from "redux";
-import { loginReducer } from "./loginReducer";
-import { loadingReducer } from "./loadingReducer";
-import { profileReducer } from "./profileReducer";
-import { campaignReducer } from "./campaignReduer";
-import { itemReducer } from "./itemReducer";
-import { userReducer } from "./userReducer";
-import { roleReducer } from "./roleReducer";
-import { mistakeReducer } from "./mistakeReducer";
-import { dailyReportReducer } from "./dailyReportReducer";
 import { dailyReportAdminReducer } from "./dailyReportAminReducer";
+import { dailyReportReducer } from "./dailyReportReducer";
+import { loadingReducer } from "./loadingReducer";
+import { loginReducer } from "./loginReducer";
+import { mistakeReducer } from "./mistakeReducer";
+import { profileReducer } from "./profileReducer";
+import { roleReducer } from "./roleReducer";
+import { userReducer } from "./userReducer";
 const myReducer = combineReducers({
   Authorization: loginReducer,
   Roles: roleReducer,
@@ -18,10 +16,6 @@ const myReducer = combineReducers({
   UserState: userReducer,
   DailyReportAdminState: dailyReportAdminReducer,
 
-
   ProfileState: profileReducer,
-  CampaignState: campaignReducer,
-  ItemState: itemReducer,
-
 });
 export default myReducer;

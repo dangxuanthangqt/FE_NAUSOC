@@ -36,7 +36,7 @@ function* watchRegister({ payload }) {
     yield call(toastifySuccess, "Register successfully !");
     yield call(history.push, "/auth/login");
   } catch (e) {
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError,"ERROR");
     yield put(hideLoading());
   }
 }
@@ -58,7 +58,7 @@ function* watchLogin({ payload }) {
     yield delay(500);
     yield put(hideLoading());
   } catch (e) {
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError,"ERROR");
     // yield call(toastifyError(""))
     yield put(hideLoading());
   }

@@ -25,11 +25,13 @@ function ReportTableManagement(props) {
       });
       return {
         _id: e._id,
-        group: e.user_id.role_id.name,
+        group: e.user_id.role_id.name ? e.user_id.role_id.name : "",
         standard_product: e.standard_product,
         defective_product: e.defective_product,
-        user: e.user_id.email,
-        fullName: `${e.user_id.first_name} ${e.user_id.last_name}`,
+        user: e.user_id.email ? e.user_id.email : "",
+        fullName: e.user_id
+          ? `${e.user_id.first_name} ${e.user_id.last_name}`
+          : "",
         date: format(new Date(e.date), "dd/MM/yyyy HH:mm:ss"),
         mistakes: temp2.join(", "),
         description: e.description,

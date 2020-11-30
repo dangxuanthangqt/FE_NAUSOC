@@ -1,20 +1,15 @@
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import OpenInNewIcon from "@material-ui/icons/OpenInNew";
+import EditIcon from '@material-ui/icons/Edit';
+import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import MaterialTable from "material-table";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LockIcon from '@material-ui/icons/Lock';
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
-import EditIcon from '@material-ui/icons/Edit';
 import {
-  Delete_item_request,
-  Updata_item_edit_to_redux,
-} from "../../../redux/actionCreators/ItemActionCreator";
-import {
-  Get_all_user_request,
   Change_status_user_request,
-  Delete_user_request, Reset_password
+  Delete_user_request, Get_all_user_request,
+
+  Reset_password
 } from "../../../redux/actionCreators/UserActionCreator";
 UserList.propTypes = {};
 
@@ -26,7 +21,7 @@ function UserList(props) {
     let temp = listUsers.map((e, i) => {
       return {
         ...e,
-        role_name: e.role.name,
+        role_name: e.role.name ? e.role.name : "",
       };
     });
     return temp;

@@ -30,7 +30,7 @@ function* watchGetMistake({ payload }) {
     yield put(hideLoading());
   } catch (error) {
     yield put(hideLoading());
-    yield call(toastifyError, error.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchCreateMistake({ payload }) {
@@ -39,7 +39,7 @@ function* watchCreateMistake({ payload }) {
     yield put(Get_mistake_followID_request());
     yield call(toastifySuccess, res.data.message);
   } catch (error) {
-    yield call(toastifyError, error.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchDeleteMistake({ payload }) {
@@ -51,7 +51,7 @@ function* watchDeleteMistake({ payload }) {
     yield call(toastifySuccess, res.data.message);
     yield put(hideLoading());
   } catch (error) {
-    yield call(toastifyError, error.data.message);
+    yield call(toastifyError, "ERROR");
     yield put(hideLoading());
   }
 }
@@ -60,8 +60,8 @@ function* watchEditMistake({ payload }) {
   try {
     const res = yield call(axiosService.put, "/mistakes", payload);
     yield put(Get_mistake_followID_request());
-    yield call(toastifySuccess,res.data.message)
+    yield call(toastifySuccess, res.data.message);
   } catch (e) {
-    yield call(toastifyError,e.data.message)
+    yield call(toastifyError, "ERROR");
   }
 }

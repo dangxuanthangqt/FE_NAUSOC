@@ -37,7 +37,7 @@ function* watchCreateDailyReport({ payload }) {
     yield call(toastifySuccess, res.data.message);
     yield put(Get_daily_report_request());
   } catch (e) {
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchGetDailyReport({ payload }) {
@@ -49,7 +49,7 @@ function* watchGetDailyReport({ payload }) {
     
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError,"ERROR");
   }
 }
 function* watchGetDailyReport_byDate({ payload }) {
@@ -61,7 +61,7 @@ function* watchGetDailyReport_byDate({ payload }) {
     yield call(toastifySuccess, res.data.message);
   } catch (e) {
     yield put(hideLoading());
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }
 function* watchDeleteDailyReport({ payload }) {
@@ -71,6 +71,6 @@ function* watchDeleteDailyReport({ payload }) {
 
     yield call(toastifySuccess, res.data.message);
   } catch (e) {
-    yield call(toastifyError, e.data.message);
+    yield call(toastifyError, "ERROR");
   }
 }

@@ -47,7 +47,7 @@ function ModalAddReport(props) {
           timeout: 500,
         }}
       >
-        <Card style={{ width: "40%" }}>
+        <Card style={{ width: "40%", height: "95vh", overflowY: "scroll" }}>
           <Typography
             style={{ textAlign: "center", margin: "10px 0px" }}
             component="h1"
